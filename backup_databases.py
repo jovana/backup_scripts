@@ -92,5 +92,6 @@ else:
 print("")
 print("Backup script completed")
 
-# Cleanup backup files
-os.system("rm -rf " + TODAYBACKUPPATH)
+# Cleanup backup files (only if cloud upload has enabled)
+if use_aws_s3_upload:
+    os.system("rm -rf " + TODAYBACKUPPATH)
