@@ -3,8 +3,8 @@
 This script is desinged for working on Linux Ubuntu to backup your important databases. Using a cronjob to run this when needed.
 
 ## Requirments
-Python 3.7
-If you want to upload your backup files to the AWS S3 cloud, install boto3
+- Python 3.7
+- If you want to upload your backup files to the AWS S3 cloud, install boto3
 ```
 pip3 install boto3
 ```
