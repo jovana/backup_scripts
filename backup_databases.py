@@ -5,12 +5,14 @@ import datetime
 import pipes
 import boto3
 
+# Path to store the backup files
+BACKUP_PATH = '/home/backup/backups'
+
 # MySQL database details to which backup to be done.
 # Make sure below user having enough privileges to take databases backup.
 DB_HOST = 'localhost'
 DB_USER = 'backup_user'
 DB_USER_PASSWORD = 'SuperStrongPassword'
-BACKUP_PATH = '/home/backup/backups'
 
 # To take multiple databases backup, create any file like databases.conf and put databases names
 # one on each line and assigned to DB_NAME variable

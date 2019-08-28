@@ -51,3 +51,13 @@ aws_secret_access_key = '<your_secret_key>'
 aws_bucket = '<your_bucket_name>'
 ```
 
+### Setup the CrobJob
+Start your crontab editor:
+```crontab -e```
+
+Enter this line to run this script every day at 3am:
+```0 3 * * * /etc/python3 /home/backup/scripts/backup_databases.py```
+
+To found out where the file python3 can be found on your system simple run the below command:
+```whereis python3```
+
