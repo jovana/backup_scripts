@@ -28,27 +28,42 @@ Check if this user has the correct permissions:
 ```show grants for 'backup_user'@'localhost';```
 
 ### Setup the backup script parameters
-Enter the correct details on top of this script:
-Your server host:
-```DB_HOST = 'localhost'```
+Use the config.ini file to set the correct details for your backup script.
+You have 3 sections:
+APP, DB and AWS
 
-Your database username:
-```DB_USER = 'backup_user'```
+#### APP section
+This section contains the global settings:
 
-Your database password:
-```DB_USER_PASSWORD = 'SuperStrongPassword'```
+- where to store the backup files:
+```backup_path = '/home/backup/backups'```
 
-where to store the backup files:
-```BACKUP_PATH = '/home/backup/backups'```
+- If you like to use the AWS S3 upload, make sure set the below line to True. If you don't want to use this enter False (using the capitals):
+```aws_s3_upload = True```
+!don't forget to update your API details in the AWS section!
 
-If you like to use the AWS S3 upload, make sure set the below line to True. If you don't want to use this enter False (using the capitals):
-```use_aws_s3_upload = True```
+- Create seperated files per database table (set to False if you want only one large file):
+```table_level_backup = True```
 
-Als enter your AWS KEY and Securt key and region:
+
+#### DB section
+This section contains the database settings.
+
+- Your server host:
+```db_host = 'localhost'```
+
+- Your database username:
+```db_user = 'backup_user'```
+
+- Your database password:
+```db_user_password = 'SuperStrongPassword'```
+
+#### AWS section
+If you want to store the backups into your AWS S3 bucket update this section: 
 ```
-aws_access_key_id = '<your_key>'
-aws_secret_access_key = '<your_secret_key>'
-aws_bucket = '<your_bucket_name>'
+aws_access_key_id = your_key
+aws_secret_access_key = your_secret_key
+aws_bucket = your_bucket_name
 ```
 
 ### Setup the CrobJob
@@ -56,7 +71,7 @@ Start your crontab editor:
 ```crontab -e```
 
 Enter this line to run this script every day at 3am:
-```0 3 * * * /etc/python3 /home/backup/scripts/backup_databases.py```
+```0 3 * * * /usr/bin/python3 /home/backup/scripts/backup_databases.py > /var/log/cron_backup.log```
 
 To found out where the file python3 can be found on your system simple run the below command:
 ```whereis python3```
