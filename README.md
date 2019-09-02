@@ -40,7 +40,7 @@ This section contains the global settings:
 
 - If you like to use the AWS S3 upload, make sure set the below line to True. If you don't want to use this enter False (using the capitals):
 ```aws_s3_upload = True```
-!don't forget to update your API details in the AWS section!
+> **_don't forget to update your API details in the AWS section_**
 
 - Create seperated files per database table (set to False if you want only one large file):
 ```table_level_backup = True```
