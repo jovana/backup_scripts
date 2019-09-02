@@ -16,6 +16,7 @@ Start the mysql cli
 ```mysql```
 
 Create the user:
+
 ```CREATE USER 'backup_user'@'localhost' IDENTIFIED BY 'YourSuperStrongPassword';```
 
 Set the correct permissions (if this script run on the same server, use localhost, otherwise use the host / ip from the remote system):
@@ -25,22 +26,25 @@ flush PRIVILEGES;
 ```
 
 Check if this user has the correct permissions:
+
 ```show grants for 'backup_user'@'localhost';```
 
 ### Setup the backup script parameters
 Use the config.ini file to set the correct details for your backup script.
 You have 3 sections:
-APP, DB and AWS
+- APP
+- DB
+- AWS
 
 #### APP section
 This section contains the global settings:
 
 - where to store the backup files:
-```backup_path = '/home/backup/backups'```
+```backup_path = /home/backup/backups```
 
 - If you like to use the AWS S3 upload, make sure set the below line to True. If you don't want to use this enter False (using the capitals):
 ```aws_s3_upload = True```
-> **_don't forget to update your API details in the AWS section_**
+> **_don't forget to update your API details in the AWS section below!_**
 
 - Create seperated files per database table (set to False if you want only one large file):
 ```table_level_backup = True```
@@ -50,13 +54,13 @@ This section contains the global settings:
 This section contains the database settings.
 
 - Your server host:
-```db_host = 'localhost'```
+```db_host = localhost```
 
 - Your database username:
-```db_user = 'backup_user'```
+```db_user = backup_user```
 
 - Your database password:
-```db_user_password = 'SuperStrongPassword'```
+```db_user_password = SuperStrongPassword```
 
 #### AWS section
 If you want to store the backups into your AWS S3 bucket update this section: 
@@ -68,11 +72,14 @@ aws_bucket = your_bucket_name
 
 ### Setup the CrobJob
 Start your crontab editor:
+
 ```crontab -e```
 
 Enter this line to run this script every day at 3am:
+
 ```0 3 * * * /usr/bin/python3 /home/backup/scripts/backup_databases.py > /var/log/cron_backup.log```
 
-To found out where the file python3 can be found on your system simple run the below command:
+Need to find out where the bin file python3 can be found on your system simple run the below command:
+
 ```whereis python3```
 
