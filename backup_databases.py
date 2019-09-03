@@ -7,7 +7,7 @@ import pipes
 
 # Loading the configuration
 cfg = ConfigParser()
-cfg.read('config.ini')
+cfg.read('/home/backup/scripts/config.ini')
 
 
 # DOT NOT EDIT BELOW THIS LINE
